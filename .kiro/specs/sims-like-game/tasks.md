@@ -7,7 +7,8 @@
   - Set up dependency injection container using get_it
   - _Requirements: 1.1, 1.4, 9.1, 9.2_
 
-- [ ] 1.1 Create Project Structure and Dependencies
+- [x] 1.1 Create Project Structure and Dependencies
+
   - Initialize Flutter project with required dependencies (flame, pathfinding, event_bus, get_it, json_serializable, freezed, flutter_gen_runner)
   - Set up folder structure following design specification (lib/core/, lib/presentation/, lib/infra/)
   - Configure build_runner and code generation tools with watch mode
@@ -18,6 +19,8 @@
 - [x] 1.2 Implement Simulation Clock System
 
 
+
+
   - Create SimulationClock interface with 15Hz fixed timestep
   - Implement deterministic tick system with pause/resume functionality
   - Add debug step-by-step mode for development
@@ -25,7 +28,9 @@
   - _Requirements: 1.1, 1.4, 8.4_
 
 
-- [ ] 1.3 Build Event Bus Communication System
+- [x] 1.3 Build Event Bus Communication System
+
+
 
   - Implement central EventBus using event_bus package
   - Create typed event classes (TickEvent, ErrorEvent, etc.)
@@ -56,14 +61,21 @@
   - Implement world serialization for save/load functionality
   - _Requirements: 1.1, 6.1, 6.2_
 
-- [ ] 2.1 Create World State and Grid Foundation
-  - Implement World class with grid, sims, and objects collections
-  - Create Grid class with 64x64 tile limitation and coordinate system
-  - Add Position class with isometric coordinate conversion utilities
-  - Implement basic world tick processing loop
+- [ ] 2.1 Create Position and Grid Foundation Classes
+  - Create Position class with x, y coordinates and isometric conversion utilities
+  - Implement Grid class with 64x64 tile limitation and bounds checking
+  - Add coordinate system utilities for isometric projection
+  - Create basic tile data structure for floor/wall types
+  - _Requirements: 1.1, 3.1_
+
+- [ ] 2.2 Implement World State Management
+  - Create World class with grid, sims, and objects collections
+  - Add world tick processing loop that updates all entities
+  - Implement basic world state queries (getObjectsAt, getSimsInRange, etc.)
+  - Create world initialization and cleanup methods
   - _Requirements: 1.1, 1.4_
 
-- [ ] 2.2 Add World Serialization and Persistence
+- [ ] 2.3 Add World Serialization and Persistence
   - Create SaveData model using freezed and json_serializable
   - Implement World.toJson() and World.fromJson() methods
   - Add save data versioning for future migration support
