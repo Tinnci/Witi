@@ -1,0 +1,68 @@
+# Flutter/Dart specific
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_*.png
+linked_*.ds
+unlinked.ds
+unlinked_spec.ds
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build artifacts
+*.apk
+*.aab
+*.ipa
+*.app
+*.exe
+*.dmg
+*.zip
+*.tar.gz
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+lib/gen/
+
+# Coverage
+coverage/
+lcov.info
+
+# Logs
+*.log
+
+# Local configuration
+.env
+.env.local
+
+# Save files and user data
+saves/
+user_data/
+autosave_*.json
+
+# Asset build artifacts
+assets/images/atlas.png
+assets/data/atlas_manifest.json
+
+# Test artifacts
+test_coverage/
+integration_test/screenshots/
