@@ -58,13 +58,16 @@
 
 
 
+
   - Create Position class with x, y coordinates and isometric conversion utilities
   - Implement Grid class with 64x64 tile limitation and bounds checking
   - Add coordinate system utilities for isometric projection
   - Create basic tile data structure for floor/wall types
   - _Requirements: 1.1, 3.1_
 
-- [ ] 2.2 Implement World State Management
+- [x] 2.2 Implement World State Management
+
+
 
 
 
@@ -81,6 +84,11 @@
   - _Requirements: 1.1, 1.4_
 
 - [ ] 2.3 Add World Serialization and Persistence
+
+
+
+
+
   - Create SaveData model using freezed and json_serializable
   - Implement World.toJson() and World.fromJson() methods
   - Add save data versioning for future migration support
@@ -99,13 +107,15 @@
   - Implement NeedContainer with tick processing and most urgent need detection
   - Add need deficit calculation for AI scoring system
   - Create unit tests for need decay and threshold behavior
+  - Create lib/simulation/need.dart and lib/simulation/need_container.dart
   - _Requirements: 1.1, 1.2_
 
 - [ ] 3.2 Build Sim Character Foundation
-  - Create Sim class with position, needs, and basic state management
+  - Create concrete Sim class implementing the abstract class in world.dart
   - Implement Sim tick processing with need updates
   - Add TraitContainer interface for future personality system
   - Create ActionQueue for managing character actions
+  - Create lib/simulation/sim.dart, lib/simulation/trait_container.dart, lib/simulation/action_queue.dart
   - _Requirements: 1.2, 10.1, 10.2_
 
 - [ ] 4. Interactive Objects and Component System

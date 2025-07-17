@@ -3,6 +3,7 @@ import '../infra/events/game_event_bus.dart';
 import '../infra/events/game_events.dart';
 import 'grid.dart';
 import 'position.dart';
+import 'save_data.dart';
 
 /// Core world state management for the Sims-like game
 ///
@@ -370,7 +371,7 @@ class World {
       'grid': grid.toJson(),
       'sims': _sims.map((sim) => sim.toJson()).toList(),
       'objects': _objects.map((obj) => obj.toJson()).toList(),
-      'globalState': _globalState,
+      'globalState': Map<String, dynamic>.from(_globalState),
     };
   }
 
@@ -398,6 +399,54 @@ class World {
     for (final _ in objectsJson) {
       // TODO: Implement when InteractiveObject class is available
       // final object = InteractiveObject.fromJson(objectJson as Map<String, dynamic>);
+      // world.addObject(object);
+    }
+
+    return world;
+  }
+
+  /// Create a SaveData instance from this world
+  SaveData toSaveData({
+    required String saveId,
+    required String saveName,
+    Map<String, dynamic>? metadata,
+  }) {
+    return SaveData(
+      saveId: saveId,
+      saveName: saveName,
+      createdAt: DateTime.now(),
+      lastModified: DateTime.now(),
+      currentTick: _currentTick,
+      worldCreatedAt: _createdAt,
+      gridData: grid.toJson(),
+      simsData: _sims.map((sim) => sim.toJson()).toList(),
+      objectsData: _objects.map((obj) => obj.toJson()).toList(),
+      globalState: Map<String, dynamic>.from(_globalState),
+      metadata: metadata ?? {},
+    );
+  }
+
+  /// Create world from SaveData
+  factory World.fromSaveData(SaveData saveData) {
+    final grid = Grid.fromJson(saveData.gridData);
+    final world = World(grid: grid);
+
+    world._currentTick = saveData.currentTick;
+    
+    // Load global state
+    world._globalState.addAll(saveData.globalState);
+
+    // Load Sims (will be implemented when Sim class is available)
+    for (final _ in saveData.simsData) {
+      // TODO: Implement when Sim class is available
+      // final sim = Sim.fromJson(simData);
+      // world.addSim(sim);
+    }
+
+    // Load objects (will be implemented when InteractiveObject class is available)
+    for (final _ in saveData.objectsData) {
+      // TODO: Implement when InteractiveObject class is available
+      // final object = InteractiveObject.fromJson(objectData);
       // world.addObject(object);
     }
 
