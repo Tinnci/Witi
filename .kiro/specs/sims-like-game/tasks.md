@@ -24,6 +24,7 @@
   - Create TickEvent for broadcasting simulation updates
   - _Requirements: 1.1, 1.4, 8.4_
 
+
 - [ ] 1.3 Build Event Bus Communication System
   - Implement central EventBus using event_bus package
   - Create typed event classes (TickEvent, ErrorEvent, etc.)
