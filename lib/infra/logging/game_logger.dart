@@ -36,7 +36,6 @@ class GameLogger {
   LogLevel _minimumLevel;
   bool _enableConsoleOutput;
   bool _enableFileOutput;
-  bool _isTestMode;
 
   File? _logFile;
 
@@ -51,8 +50,7 @@ class GameLogger {
        _enableConsoleOutput = enableConsoleOutput,
        _enableFileOutput =
            enableFileOutput && !isTestMode, // Disable file output in test mode
-       _maxHistorySize = maxHistorySize,
-       _isTestMode = isTestMode {
+       _maxHistorySize = maxHistorySize {
     _initializeLogFile();
   }
 
@@ -66,7 +64,7 @@ class GameLogger {
       enableConsoleOutput: false, // Reduce noise in tests
       enableFileOutput: false,
       maxHistorySize: maxHistorySize,
-      isTestMode: true,
+      isTestMode: true, // This parameter is used in constructor logic
     );
   }
 
