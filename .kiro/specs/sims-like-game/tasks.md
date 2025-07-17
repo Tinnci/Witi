@@ -8,7 +8,6 @@
   - _Requirements: 1.1, 1.4, 9.1, 9.2_
 
 - [x] 1.1 Create Project Structure and Dependencies
-
   - Initialize Flutter project with required dependencies (flame, pathfinding, event_bus, get_it, json_serializable, freezed, flutter_gen_runner)
   - Set up folder structure following design specification (lib/core/, lib/presentation/, lib/infra/)
   - Configure build_runner and code generation tools with watch mode
@@ -17,32 +16,20 @@
   - _Requirements: 5.1, 7.1_
 
 - [x] 1.2 Implement Simulation Clock System
-
-
-
-
   - Create SimulationClock interface with 15Hz fixed timestep
   - Implement deterministic tick system with pause/resume functionality
   - Add debug step-by-step mode for development
   - Create TickEvent for broadcasting simulation updates
   - _Requirements: 1.1, 1.4, 8.4_
 
-
 - [x] 1.3 Build Event Bus Communication System
-
-
-
   - Implement central EventBus using event_bus package
   - Create typed event classes (TickEvent, ErrorEvent, etc.)
   - Add event subscription and unsubscription mechanisms
   - Ensure events are immutable to prevent race conditions
   - _Requirements: 9.1, 9.2, 9.4, 9.5_
 
-- [X] 1.4 Set Up Dependency Injection and Error Handling
-
-
-
-
+- [x] 1.4 Set Up Dependency Injection and Error Handling
   - Configure get_it service locator for dependency injection
   - Register SeededRandom singleton for deterministic random number generation
   - Implement SimulationErrorHandler and RenderErrorHandler with separate concerns
@@ -50,13 +37,7 @@
   - Create error recovery mechanisms for common failure scenarios
   - _Requirements: 8.5, 9.5_
 
-- [ ] 1.5 Build Early Asset Pipeline Tools
-
-
-
-
-
-
+- [x] 1.5 Build Early Asset Pipeline Tools
   - Create AtlasBuilder CLI tool for sprite packing using maxrects algorithm
   - Generate atlas.json in Flame's SpriteBatch format for efficient loading
   - Implement asset validation tools for checking image formats and sizes
@@ -71,7 +52,12 @@
   - Implement world serialization for save/load functionality
   - _Requirements: 1.1, 6.1, 6.2_
 
-- [ ] 2.1 Create Position and Grid Foundation Classes
+
+- [x] 2.1 Create Position and Grid Foundation Classes
+
+
+
+
   - Create Position class with x, y coordinates and isometric conversion utilities
   - Implement Grid class with 64x64 tile limitation and bounds checking
   - Add coordinate system utilities for isometric projection
