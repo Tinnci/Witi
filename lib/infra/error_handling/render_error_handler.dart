@@ -1,5 +1,4 @@
 import '../events/game_event_bus.dart';
-import '../events/game_events.dart';
 import '../logging/game_logger.dart';
 
 /// Custom exceptions for rendering errors
