@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sims_like_game/simulation/save_data.dart';
 import 'package:sims_like_game/simulation/world.dart';
 import 'package:sims_like_game/simulation/grid.dart';
-import 'package:sims_like_game/simulation/position.dart';
 import 'package:sims_like_game/simulation/tile.dart';
 
 void main() {
@@ -44,15 +43,21 @@ void main() {
 
       // Serialize to JSON
       final json = originalSaveData.toJson();
-      
+
       // Deserialize from JSON
       final deserializedSaveData = SaveData.fromJson(json);
 
       expect(deserializedSaveData.saveId, equals(originalSaveData.saveId));
       expect(deserializedSaveData.saveName, equals(originalSaveData.saveName));
       expect(deserializedSaveData.version, equals(originalSaveData.version));
-      expect(deserializedSaveData.currentTick, equals(originalSaveData.currentTick));
-      expect(deserializedSaveData.globalState, equals(originalSaveData.globalState));
+      expect(
+        deserializedSaveData.currentTick,
+        equals(originalSaveData.currentTick),
+      );
+      expect(
+        deserializedSaveData.globalState,
+        equals(originalSaveData.globalState),
+      );
       expect(deserializedSaveData.metadata, equals(originalSaveData.metadata));
     });
   });
@@ -68,12 +73,12 @@ void main() {
         worldCreatedAt: now,
         gridData: {
           'size': 64,
-          'tiles': List.generate(64, (x) => 
-            List.generate(64, (y) => {
-              'floor': 'grass',
-              'wall': 'none',
-              'isExplored': true,
-            })
+          'tiles': List.generate(
+            64,
+            (x) => List.generate(
+              64,
+              (y) => {'floor': 'grass', 'wall': 'none', 'isExplored': true},
+            ),
           ),
         },
       );
@@ -91,7 +96,9 @@ void main() {
         saveId: '', // Empty save ID
         saveName: '', // Empty save name
         createdAt: now,
-        lastModified: now.subtract(const Duration(days: 1)), // Last modified before created
+        lastModified: now.subtract(
+          const Duration(days: 1),
+        ), // Last modified before created
         currentTick: -1, // Negative tick
         worldCreatedAt: now,
         gridData: {
@@ -107,7 +114,10 @@ void main() {
       expect(result.errors, contains('Save ID cannot be empty'));
       expect(result.errors, contains('Save name cannot be empty'));
       expect(result.errors, contains('Current tick cannot be negative'));
-      expect(result.errors, contains('Last modified date cannot be before creation date'));
+      expect(
+        result.errors,
+        contains('Last modified date cannot be before creation date'),
+      );
       expect(result.errors, contains('Invalid grid size: expected 64, got 32'));
     });
 
@@ -138,12 +148,12 @@ void main() {
         worldCreatedAt: now,
         gridData: {
           'size': 64,
-          'tiles': List.generate(64, (x) => 
-            List.generate(64, (y) => {
-              'floor': 'grass',
-              'wall': 'none',
-              'isExplored': true,
-            })
+          'tiles': List.generate(
+            64,
+            (x) => List.generate(
+              64,
+              (y) => {'floor': 'grass', 'wall': 'none', 'isExplored': true},
+            ),
           ),
         },
         globalState: {
@@ -156,8 +166,14 @@ void main() {
 
       // The validation should still pass overall, but have warnings
       expect(result.isValid, isTrue);
-      expect(result.warnings, contains('Global state currentTick should be a non-negative integer'));
-      expect(result.warnings, contains('Global state simulationTime should be a non-negative number'));
+      expect(
+        result.warnings,
+        contains('Global state currentTick should be a non-negative integer'),
+      );
+      expect(
+        result.warnings,
+        contains('Global state simulationTime should be a non-negative number'),
+      );
     });
   });
 
@@ -183,7 +199,7 @@ void main() {
   group('World Serialization', () {
     test('should create SaveData from World', () {
       final world = World();
-      
+
       // Add some global state
       world.setGlobalState('testKey', 'testValue');
       world.setGlobalState('currentTick', 50);
@@ -205,11 +221,15 @@ void main() {
 
     test('should create World from SaveData', () {
       final now = DateTime.now();
-      
+
       // Create a grid with some custom tiles
       final grid = Grid();
       grid.setTileAt(0, 0, const Tile.indoor(floor: FloorType.wood, roomId: 1));
-      grid.setTileAt(1, 1, const Tile.wall(wallType: WallType.interior, roomId: 1));
+      grid.setTileAt(
+        1,
+        1,
+        const Tile.wall(wallType: WallType.interior, roomId: 1),
+      );
 
       final saveData = SaveData(
         saveId: 'test-world-save',
@@ -232,12 +252,12 @@ void main() {
       expect(world.getGlobalState<int>('currentTick'), equals(150));
       expect(world.getGlobalState<double>('simulationTime'), equals(10.0));
       expect(world.getGlobalState<String>('customValue'), equals('test'));
-      
+
       // Check that grid was loaded correctly
       final loadedTile00 = world.grid.getTileAt(0, 0);
       expect(loadedTile00.floor, equals(FloorType.wood));
       expect(loadedTile00.roomId, equals(1));
-      
+
       final loadedTile11 = world.grid.getTileAt(1, 1);
       expect(loadedTile11.wall, equals(WallType.interior));
       expect(loadedTile11.roomId, equals(1));
@@ -245,14 +265,22 @@ void main() {
 
     test('should round-trip World through SaveData', () {
       final originalWorld = World();
-      
+
       // Set up some state
       originalWorld.setGlobalState('testValue', 42);
       originalWorld.setGlobalState('testString', 'hello world');
-      
+
       // Modify the grid
-      originalWorld.grid.setTileAt(5, 5, const Tile.indoor(floor: FloorType.stone, roomId: 2));
-      originalWorld.grid.setTileAt(10, 10, const Tile.wall(wallType: WallType.exterior));
+      originalWorld.grid.setTileAt(
+        5,
+        5,
+        const Tile.indoor(floor: FloorType.stone, roomId: 2),
+      );
+      originalWorld.grid.setTileAt(
+        10,
+        10,
+        const Tile.wall(wallType: WallType.exterior),
+      );
 
       // Convert to SaveData
       final saveData = originalWorld.toSaveData(
@@ -265,13 +293,16 @@ void main() {
 
       // Verify state was preserved
       expect(restoredWorld.getGlobalState<int>('testValue'), equals(42));
-      expect(restoredWorld.getGlobalState<String>('testString'), equals('hello world'));
-      
+      expect(
+        restoredWorld.getGlobalState<String>('testString'),
+        equals('hello world'),
+      );
+
       // Verify grid was preserved
       final tile55 = restoredWorld.grid.getTileAt(5, 5);
       expect(tile55.floor, equals(FloorType.stone));
       expect(tile55.roomId, equals(2));
-      
+
       final tile1010 = restoredWorld.grid.getTileAt(10, 10);
       expect(tile1010.wall, equals(WallType.exterior));
     });
