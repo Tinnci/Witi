@@ -1,0 +1,29 @@
+# Build configuration for code generation
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Generate both toJson and fromJson methods
+          explicit_to_json: true
+          # Include fields with null values in JSON
+          include_if_null: false
+          # Use checked mode for better error messages
+          checked: true
+      
+      freezed:
+        options:
+          # Generate copyWith methods
+          copy_with: true
+          # Generate equality and hashCode
+          equal: true
+          # Generate toString method
+          to_string: true
+
+# Flutter Gen configuration
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
+  integrations:
+    flutter_svg: true
+    flare_flutter: false

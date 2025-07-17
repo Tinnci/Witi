@@ -20,6 +20,7 @@
   - Implement deterministic tick system with pause/resume functionality
   - Add debug step-by-step mode for development
   - Create TickEvent for broadcasting simulation updates
+  - Add variable game-speed multipliers (½×, 1×, 3×)
   - _Requirements: 1.1, 1.4, 8.4_
 
 - [ ] 1.3 Build Event Bus Communication System
@@ -27,6 +28,7 @@
   - Create typed event classes (TickEvent, ErrorEvent, etc.)
   - Add event subscription and unsubscription mechanisms
   - Ensure events are immutable to prevent race conditions
+  - Include an "unsubscribe-on-dispose" helper
   - _Requirements: 9.1, 9.2, 9.4, 9.5_
 
 - [ ] 1.4 Set Up Dependency Injection and Error Handling
@@ -57,6 +59,7 @@
   - Create Grid class with 64x64 tile limitation and coordinate system
   - Add Position class with isometric coordinate conversion utilities
   - Implement basic world tick processing loop
+  - Reserve a TileFlags bit-field (walkable, roomId, outdoor, etc.)
   - _Requirements: 1.1, 1.4_
 
 - [ ] 2.2 Add World Serialization and Persistence
@@ -127,6 +130,7 @@
   - Implement ActionQueue with priority and cancellation support
   - Add action execution system with routing slot targeting
   - Integrate AI decision making with Sim tick processing
+  - Note maximum queue length (e.g., 8 actions) and a clearAll() API
   - _Requirements: 1.2, 2.3, 2.4_
 
 - [ ] 6. Pathfinding Engine with A* Algorithm
@@ -225,6 +229,7 @@
   - Implement AI computation isolate for heavy decision making
   - Add pathfinding isolate for A* algorithm processing
   - Create isolate pool management for optimal resource usage
+  - Allocate one low-priority isolate for background autosave compression
   - _Requirements: 10.2, 10.3_
 
 - [ ] 10.2 Add Object Pooling and Memory Management
