@@ -26,6 +26,7 @@
 
 
 - [ ] 1.3 Build Event Bus Communication System
+
   - Implement central EventBus using event_bus package
   - Create typed event classes (TickEvent, ErrorEvent, etc.)
   - Add event subscription and unsubscription mechanisms
