@@ -26,7 +26,7 @@ packages:
     source: hosted
     version: "4.0.7"
   args:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: args
       sha256: d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04
@@ -363,6 +363,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.1.2"
+  image:
+    dependency: "direct main"
+    description:
+      name: image
+      sha256: "4e973fcf4caae1a4be2fa0a13157aa38a8f9cb049db6529aa00b4d71abc4d928"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.5.4"
   image_size_getter:
     dependency: transitive
     description:
@@ -705,7 +713,7 @@ packages:
     source: hosted
     version: "15.0.2"
   watcher:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: watcher
       sha256: "0b7fd4a0bbc4b92641dbf20adfd7e3fd1398fe17102d94b674234563e110088a"

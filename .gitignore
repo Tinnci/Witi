@@ -66,3 +66,4 @@ assets/data/atlas_manifest.json
 # Test artifacts
 test_coverage/
 integration_test/screenshots/
+logs/game_log.txt
